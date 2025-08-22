@@ -1,1 +1,41 @@
 
+expense=[]
+print("Enter the number of categories:")
+n=int(input())
+for i in range(n):
+    print(f"Enter the details of category:{i+1}")
+    category=input("Enter the category name:")
+    amount=input("Enter the amount:")
+
+    expense.append({
+        "category":category,
+        "amount":amount
+                    })
+print(expense)
+
+total_amount=0
+for x in expense:
+    total_amount+=int(x["amount"])
+
+
+print("Total_expense:",total_amount)
+
+category_wise={}
+for x in expense:
+    category=x["category"]
+    amount=x["amount"]
+    if category in category_wise:
+        category_wise[category]+=amount
+    else:
+        category_wise[category]=amount
+print("Category wise expense:",category_wise)
+print("\nEnter your income of this month:")
+income=int(input())
+savings=income-total_amount
+
+if savings>0:
+    print("You have saved:",savings,"taka")
+elif savings==0:
+    print("You have not saved taka")
+else:
+    print("You are in loss",abs(savings),"taka")
